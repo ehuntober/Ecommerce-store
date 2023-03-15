@@ -5,9 +5,8 @@ from django.core.execpetion import ObjectDoesNotExist
 from store.models import Product
 
 def homepage(request):
-    
-    product = Product.objects.get(pk=0)
-    # for product in query_set:
-    #     print(product)
+    try:
+        product = Product.objects.get(pk=0)
+    except ObjectDoesNotExist:
         
     return render (request,'index.html', {'name': 'Mosh'})

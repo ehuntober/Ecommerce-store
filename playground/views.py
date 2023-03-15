@@ -5,9 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from store.models import Product
 
 def homepage(request):
-    try:
-        product = Product.objects.get(pk=0)
-    except ObjectDoesNotExist:
-        pass
+    queryset = Product.objects.filter(unit_price__range=(20,30))
+
         
-    return render (request,'index.html', {'name': 'Mosh'})
+    return render (request,'index.html', {'name': 'Mosh', 'products': list(queryset)})

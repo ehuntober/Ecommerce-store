@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from store.models import Product
 
 def homepage(request):
-    product = Product.objects.order_by('unit_price')[0]
+    queryst = Product.objects.values_list('id','title','collection__title')
 
         
-    return render (request,'index.html', {'name': 'Mosh', 'products': product})
+    return render (request,'index.html', {'name': 'Mosh', 'products': list(queryset)})

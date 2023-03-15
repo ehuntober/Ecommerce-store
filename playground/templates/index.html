@@ -15,14 +15,16 @@
 <h1> Hello world </h1>
 
 {% endif %}
-
+{% comment %} 
 <ul>
     {% for product in products %}
  
     <li> {{product.title}} </li>
     {% endfor %}
     
-</ul>
+</ul> {% endcomment %}
+
+{{result}}
     
 </body>
 </html>

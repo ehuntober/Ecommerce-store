@@ -2,13 +2,14 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 from django.db.models import Q
+from django.db.models.aggregates import Count , Max, Min, Avg, Sum 
 from django.core.exceptions import ObjectDoesNotExist
 from store.models import Product , OrderItem
 
 def homepage(request):
     # queryset = OrderItem.objects.values('product_id').distinct()
     # queryset = Product.objects.values_list('id','title','collection__title')
-    queryset = Product.objects.only('id','title')
+    result = Product.objects.aggregate(count=Count('id'),min_price = Min('unit_price'))
 
         
-    return render (request,'index.html', {'name': 'Mosh', 'products': list(queryset)})
+    return render (request,'index.html', {'name': 'Mosh', 'result': result})

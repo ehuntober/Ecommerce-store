@@ -9,7 +9,9 @@ from django.db.models import Value , F
 
 
 def homepage(request):
-    queryset = Customer.objects.annotate(new_id = F('id')+ 1)
+    queryset = Customer.objects.annotate(
+        orders_count = Count('order')
+    )
 
         
     return render (request,'index.html', {'name': 'Mosh', 'result': queryset})

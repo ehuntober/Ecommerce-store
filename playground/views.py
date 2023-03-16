@@ -6,7 +6,7 @@ from django.db.models.aggregates import Count , Max, Min, Avg, Sum
 from django.core.exceptions import ObjectDoesNotExist
 from store.models import Product , OrderItem, Customer
 from django.db.models import Value , F
-# nothing else
+
 
 def homepage(request):
     queryset = Customer.objects.annotate(new_id = F('id')+ 1)
